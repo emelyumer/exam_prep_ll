@@ -1,13 +1,13 @@
 from pathlib import Path
 
-
+# BASE DIR should always point to the manage.py directory
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-inqag6i(&vod-tmvst933(=-v-(69i3zgb*ud_+vl0(y2#^@hz'
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 INSTALLED_APPS = [
     #Django apps
@@ -87,6 +87,16 @@ USE_I18N = True
 
 USE_TZ = True
 
+# URL Prefix in the client
 STATIC_URL = 'static/'
+
+# Directories on the file system
+STATICFILES_DIRS = (
+    BASE_DIR / "staticfiles",
+)
+
+MEDIA_ROOT = BASE_DIR / 'mediafiles'
+
+MEDIA_URL = '/media/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
