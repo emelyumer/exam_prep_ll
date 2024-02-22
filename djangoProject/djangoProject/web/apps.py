@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class ProfilesConfig(AppConfig):
+class WebConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'profiles'
+    name = 'djangoProject.web'
