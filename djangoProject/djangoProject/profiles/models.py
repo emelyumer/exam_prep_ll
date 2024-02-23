@@ -2,11 +2,7 @@ from django.core.exceptions import ValidationError
 from django.core.validators import MinLengthValidator
 from django.db import models
 
-
-def validate_username(username):
-    is_valid = all(ch.isalnum() or ch == "_" for ch in username)
-    if not is_valid:
-        raise ValidationError("Ensure this value contains only letters, numbers, and underscore.")
+from djangoProject.profiles.validator import validate_username
 
 
 class Profile(models.Model):

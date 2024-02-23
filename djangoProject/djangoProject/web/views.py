@@ -1,12 +1,9 @@
 from django.shortcuts import render, redirect
 
 from djangoProject.albums.models import Album
-from djangoProject.profiles.models import Profile
+from djangoProject.common.profile_helpers import get_profile
 from djangoProject.web.forms import CreateProfileForm
 
-
-def get_profile():
-    return Profile.objects.first()
 
 
 def create_profile(request):
@@ -18,6 +15,7 @@ def create_profile(request):
 
     context = {
         "form": form,
+        "without_user": True
     }
     return render(request, "web/home-no-profile.html", context)
 

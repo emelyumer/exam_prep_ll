@@ -2,9 +2,7 @@ from django.core.validators import MinValueValidator
 from django.db import models
 
 from djangoProject.profiles.models import Profile
-
-
-class Album(models.Model):
+class Genre(models.TextChoices):
     GENRE_POP = "Pop Music"
     GENRE_JAZZ = "Jazz Music"
     GENRE_ROCK = "Rock Music"
@@ -14,16 +12,17 @@ class Album(models.Model):
     GENRE_HIP_HOP = "Hip Hop Music"
     GENRE_OTHER = "Other"
 
-    GENRE_CHOISES = (
-        (GENRE_POP, GENRE_POP),
-        (GENRE_JAZZ, GENRE_JAZZ),
-        (GENRE_ROCK, GENRE_ROCK),
-        (GENRE_COUNTRY, GENRE_COUNTRY),
-        (GENRE_RNB, GENRE_RNB),
-        (GENRE_DANCE, GENRE_DANCE),
-        (GENRE_HIP_HOP, GENRE_HIP_HOP),
-        (GENRE_OTHER, GENRE_OTHER)
-    )
+class Album(models.Model):
+    # GENRE_CHOISES = (
+    #     (GENRE_POP, GENRE_POP),
+    #     (GENRE_JAZZ, GENRE_JAZZ),
+    #     (GENRE_ROCK, GENRE_ROCK),
+    #     (GENRE_COUNTRY, GENRE_COUNTRY),
+    #     (GENRE_RNB, GENRE_RNB),
+    #     (GENRE_DANCE, GENRE_DANCE),
+    #     (GENRE_HIP_HOP, GENRE_HIP_HOP),
+    #     (GENRE_OTHER, GENRE_OTHER)
+    # )
 
     name = models.CharField(
         null=False,
@@ -44,7 +43,7 @@ class Album(models.Model):
         null=False,
         blank=False,
         max_length=30,
-        choices=GENRE_CHOISES,
+        choices=Genre.choices,
     )
 
     description = models.TextField(
@@ -66,4 +65,4 @@ class Album(models.Model):
         )
     )
 
-    owner = models.ForeignKey(Profile, on_delete=models.DO_NOTHING)
+    owner = models.ForeignKey(Profile, on_delete=models.CASCADE)
